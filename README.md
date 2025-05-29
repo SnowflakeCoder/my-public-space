@@ -18,13 +18,13 @@ Experienced Engineering Manager with over **6 years** in technical leadership an
 
 ### How to reach me:
 
- 📧 arun00011@gmail.com
+📧 arun00011@gmail.com
 
 <a href="https://www.linkedin.com/in/arun-kumar-6820634/" target="_blank">
-  <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" width="30" height="24">
+  <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" width="20" height="16">
  https://www.linkedin.com/in/arun-kumar-6820634/</a>
 
- 🌐 [my-profile](https://bold.pro/my/arun-250516124316)
+🌐 [my-profile](https://bold.pro/my/arun-250516124316)
 
 
 
