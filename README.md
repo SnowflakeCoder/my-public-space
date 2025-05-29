@@ -8,9 +8,11 @@ Experienced Engineering Manager with over **6 years** in technical leadership an
 
 ### 🔑 Highlights
 
-🔹 Managed and maintained 6 𝐠𝐥𝐨𝐛𝐚𝐥 𝐛𝐫𝐚𝐧𝐝𝐬 across 20+ 𝐜𝐨𝐮𝐧𝐭𝐫𝐢𝐞𝐬, serving 80𝐌+ users
-🔹 Hands-on expertise in Java/J2EE technologies, with a strong focus on clean architecture and high availability
-🔹 Designed and delivered large-scale, distributed systems using 𝐀𝐖𝐒, 𝐂𝐈/𝐂𝐃, 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬, 𝐊𝐚𝐟𝐤𝐚, 𝐑𝐞𝐝𝐢𝐬, 𝐚𝐧𝐝 𝐏𝐨𝐬𝐭𝐠𝐫𝐞𝐒𝐐𝐋
+🔹 Managed and maintained 6 𝐠𝐥𝐨𝐛𝐚𝐥 𝐛𝐫𝐚𝐧𝐝𝐬 across 20+ 𝐜𝐨𝐮𝐧𝐭𝐫𝐢𝐞𝐬, serving 80𝐌+ users.
+
+🔹 Hands-on expertise in Java/J2EE technologies, with a strong focus on clean architecture and high availability.
+
+🔹 Designed and delivered large-scale, distributed systems using 𝐀𝐖𝐒, 𝐂𝐈/𝐂𝐃, 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬, 𝐊𝐚𝐟𝐤𝐚, 𝐑𝐞𝐝𝐢𝐬, 𝐚𝐧𝐝 𝐏𝐨𝐬𝐭𝐠𝐫𝐞𝐒𝐐𝐋.
 
 
 
