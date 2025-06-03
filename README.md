@@ -4,16 +4,20 @@
 
 Experienced Engineering Manager with over **6 years** in technical leadership and **19+ years** in backend development. Currently leading engineering efforts at Mobiquity, managing a cross-functional team of 15+ engineers. Proven track record of delivering scalable, high-performance solutions for global, high-traffic platforms.
 
+***
+***
 
 
 ### 🔑 Highlights
 
-🔹 Managed and maintained 6 𝐠𝐥𝐨𝐛𝐚𝐥 𝐛𝐫𝐚𝐧𝐝𝐬 across 20+ 𝐜𝐨𝐮𝐧𝐭𝐫𝐢𝐞𝐬, serving 80𝐌+ users.
+🔹 Managed and maintained 6 𝐠𝐥𝐨𝐛𝐚𝐥 𝐛𝐫𝐚𝐧𝐝𝐬 across 20+ 𝐜𝐨𝐮𝐧𝐭𝐫𝐢𝐞𝐬, serving 150𝐌+ users.
 
 🔹 Hands-on expertise in Java/J2EE technologies, with a strong focus on clean architecture and high availability.
 
 🔹 Designed and delivered large-scale, distributed systems using 𝐀𝐖𝐒, 𝐂𝐈/𝐂𝐃, 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬, 𝐊𝐚𝐟𝐤𝐚, 𝐑𝐞𝐝𝐢𝐬, 𝐚𝐧𝐝 𝐏𝐨𝐬𝐭𝐠𝐫𝐞𝐒𝐐𝐋.
 
+***
+***
 
 
 ### How to reach me:
@@ -21,11 +25,13 @@ Experienced Engineering Manager with over **6 years** in technical leadership an
 📧 arun00011@gmail.com
 
 <a href="https://www.linkedin.com/in/arun-kumar-6820634/" target="_blank">
-  <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" width="20" height="16">
+  <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" width="15" height="15">
  https://www.linkedin.com/in/arun-kumar-6820634/</a>
 
 🌐 [my-profile](https://bold.pro/my/arun-250516124316)
 
+***
+***
 
 
 ### Certificates
@@ -36,6 +42,8 @@ Experienced Engineering Manager with over **6 years** in technical leadership an
 
 🔹 [Communication Skills: Stakeholder Analysis](https://www.udemy.com/certificate/UC-ec2b9553-ba31-49eb-b376-dfd901ad836d/)
 
+***
+***
 
 
 ### Languages and Tools:
