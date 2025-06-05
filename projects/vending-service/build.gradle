@@ -1,0 +1,75 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.0'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id 'info.solidsoft.pitest' version '1.15.0'
+}
+
+group = 'com.example.vending'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+sourceSets {
+	testIntegration {
+		java.srcDir file('src/testIntegration/java')
+		resources.srcDir file('src/testIntegration/resources')
+		compileClasspath += sourceSets.main.output + configurations.testRuntimeClasspath
+		runtimeClasspath += output + compileClasspath
+	}
+}
+
+configurations {
+	testIntegrationImplementation.extendsFrom testImplementation
+	testIntegrationRuntimeOnly.extendsFrom testRuntimeOnly
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+	pitest 'org.pitest:pitest-junit5-plugin:1.2.1'
+	testIntegrationImplementation 'io.cucumber:cucumber-java:7.14.0'
+	testIntegrationImplementation 'io.cucumber:cucumber-spring:7.14.0'
+	testIntegrationImplementation 'io.cucumber:cucumber-junit-platform-engine:7.14.0'
+	testIntegrationImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	runtimeOnly 'com.h2database:h2'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+}
+
+pitest {
+	targetClasses = ['com.example.vending.*'] // Replace with your base package
+	targetTests = ['com.example.vending.*']
+	threads = 4
+	outputFormats = ['HTML']
+	timestampedReports = false
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+task testIntegration(type: Test) {
+	description = "Runs integration tests"
+	group = "verification"
+	testClassesDirs = sourceSets.testIntegration.output.classesDirs
+	classpath = sourceSets.testIntegration.runtimeClasspath
+	useJUnitPlatform()
+}
+
+tasks.named('processTestIntegrationResources') {
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
