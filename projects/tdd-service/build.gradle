@@ -3,6 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '3.5.0'
 	id 'io.spring.dependency-management' version '1.1.7'
 	id 'io.freefair.lombok' version '8.6'
+	id 'info.solidsoft.pitest' version '1.15.0'
 }
 
 group = 'com.myspace'
@@ -27,7 +28,15 @@ dependencies {
 	testCompileOnly 'org.projectlombok:lombok:1.18.32'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.32'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+	pitest 'org.pitest:pitest-junit5-plugin:1.2.1'
+}
 
+pitest {
+	targetClasses = ['com.myspace.tdd*'] // replace with your package
+	targetTests = ['com.myspace.tdd*']
+	threads = 4
+	outputFormats = ['HTML']
 }
 
 tasks.named('test') {
