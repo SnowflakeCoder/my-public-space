@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class InventoryController {
 
     @PostMapping("products")
-    public ResponseEntity<Void> insertProducts() {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<String> insertProducts() {
+        return ResponseEntity.ok("Added Product to Inventory Successfully.");
     }
 }
