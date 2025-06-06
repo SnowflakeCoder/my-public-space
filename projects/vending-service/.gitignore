@@ -1,11 +1,4 @@
 HELP.md
-# Ignore Git internal files/folders (usually not necessary to add)
-.git/
-
-# IntelliJ IDEA files
-.idea/
-*.iml
-
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
@@ -42,3 +35,4 @@ out/
 
 ### VS Code ###
 .vscode/
+/.gitattributes
