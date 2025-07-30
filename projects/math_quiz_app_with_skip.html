@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Quiz Application</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .name-input {
+            margin-bottom: 30px;
+        }
+
+        .name-input input {
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            width: 100%;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+
+        .name-input input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .question-section {
+            margin-bottom: 30px;
+        }
+
+        .question {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .answer-inputs {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .answer-inputs input {
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            width: 120px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        .answer-inputs input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .answer-inputs label {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .answer-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .status-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .end-btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+        }
+
+        .skip-btn {
+            background: linear-gradient(135deg, #ffa726 0%, #ff9800 100%);
+        }
+
+        .correct {
+            color: #4CAF50;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .tick {
+            font-size: 30px;
+            color: #4CAF50;
+            animation: bounce 0.5s;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 60%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            80% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .status-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .status-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .status-item {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #ddd;
+        }
+
+        .status-item.correct {
+            background: #e8f5e8;
+            border-left-color: #4CAF50;
+        }
+
+        .status-item.incorrect {
+            background: #fee;
+            border-left-color: #f44336;
+        }
+
+        .close-btn {
+            background: #666;
+            float: right;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .welcome-message {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .division-inputs {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .custom-confirm {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .confirm-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .confirm-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .yes-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        }
+
+        .no-btn {
+            background: linear-gradient(135deg, #f44336 0%, #da190b 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧮 Math Quiz</h1>
+        
+        <!-- Name Input Section -->
+        <div id="nameSection" class="name-input">
+            <input type="text" id="candidateName" placeholder="Enter your name" maxlength="50">
+            <button onclick="startQuiz()">Start Quiz</button>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="quizSection" class="hidden">
+            <div class="welcome-message" id="welcomeMessage"></div>
+            
+            <div class="question-section">
+                <div class="question" id="questionDisplay"></div>
+                
+                <div id="simpleAnswer" class="answer-inputs">
+                    <div class="answer-group">
+                        <label for="answer">Answer:</label>
+                        <input type="number" id="answer" placeholder="Your answer">
+                    </div>
+                </div>
+
+                <div id="divisionAnswer" class="answer-inputs division-inputs hidden">
+                    <div class="answer-group">
+                        <label for="quotient">Quotient:</label>
+                        <input type="number" id="quotient" placeholder="Quotient">
+                    </div>
+                    <div class="answer-group">
+                        <label for="remainder">Remainder:</label>
+                        <input type="number" id="remainder" placeholder="Remainder">
+                    </div>
+                </div>
+
+                <button onclick="checkAnswer()">Submit Answer</button>
+                <button onclick="skipQuestion()" class="skip-btn">⏭️ Skip Question</button>
+            </div>
+
+            <div id="feedback"></div>
+
+            <div class="controls">
+                <button class="status-btn" onclick="showStatus()">📊 Status</button>
+                <button class="end-btn" onclick="endQuiz()">🔄 End Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Confirmation Dialog -->
+    <div id="customConfirm" class="custom-confirm">
+        <div class="confirm-content">
+            <h3>Skip Question</h3>
+            <p>Do you want to skip this question?</p>
+            <div class="confirm-buttons">
+                <button class="yes-btn" onclick="confirmSkip(true)">Yes</button>
+                <button class="no-btn" onclick="confirmSkip(false)">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Modal -->
+    <div id="statusModal" class="status-modal">
+        <div class="status-content">
+            <h2>Quiz Status</h2>
+            <button class="close-btn" onclick="closeStatus()">Close</button>
+            <div id="statusList"></div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let candidateName = '';
+        let currentQuestion = null;
+        let questionHistory = [];
+        let usedQuestions = new Set();
+        let lastOperations = [];
+        const maxSameOperationStreak = 2;
+
+        // Start quiz function
+        function startQuiz() {
+            const name = document.getElementById('candidateName').value.trim();
+            if (!name) {
+                alert('Please enter your name to start the quiz!');
+                return;
+            }
+            
+            candidateName = name;
+            document.getElementById('nameSection').classList.add('hidden');
+            document.getElementById('quizSection').classList.remove('hidden');
+            document.getElementById('welcomeMessage').textContent = `Welcome, ${candidateName}!`;
+            
+            generateQuestion();
+        }
+
+        // Generate random question
+        function generateQuestion() {
+            let question;
+            let questionString;
+            let attempts = 0;
+            const maxAttempts = 50;
+            
+            do {
+                attempts++;
+                const operations = ['+', '-', '×', '÷'];
+                let operation;
+                
+                // Ensure good mixing of operations
+                if (lastOperations.length >= maxSameOperationStreak) {
+                    const lastOperation = lastOperations[lastOperations.length - 1];
+                    const secondLastOperation = lastOperations[lastOperations.length - 2];
+                    
+                    if (lastOperation === secondLastOperation) {
+                        const availableOperations = operations.filter(op => op !== lastOperation);
+                        operation = availableOperations[Math.floor(Math.random() * availableOperations.length)];
+                    } else {
+                        operation = operations[Math.floor(Math.random() * operations.length)];
+                    }
+                } else {
+                    operation = operations[Math.floor(Math.random() * operations.length)];
+                }
+                
+                let num1, num2;
+                
+                if (operation === '÷') {
+                    num2 = Math.floor(Math.random() * 9) + 2;
+                    const quotient = Math.floor(Math.random() * 20) + 1;
+                    const remainder = Math.floor(Math.random() * (num2 - 1));
+                    num1 = quotient * num2 + remainder;
+                } else if (operation === '-') {
+                    num1 = Math.floor(Math.random() * 50) + 1;
+                    num2 = Math.floor(Math.random() * num1) + 1;
+                } else {
+                    num1 = Math.floor(Math.random() * 50) + 1;
+                    num2 = Math.floor(Math.random() * 50) + 1;
+                }
+                
+                questionString = `${num1} ${operation} ${num2}`;
+                
+                let correctAnswer;
+                if (operation === '+') {
+                    correctAnswer = num1 + num2;
+                } else if (operation === '-') {
+                    correctAnswer = num1 - num2;
+                } else if (operation === '×') {
+                    correctAnswer = num1 * num2;
+                } else if (operation === '÷') {
+                    correctAnswer = {
+                        quotient: Math.floor(num1 / num2),
+                        remainder: num1 % num2
+                    };
+                }
+                
+                question = {
+                    text: questionString,
+                    num1: num1,
+                    num2: num2,
+                    operation: operation,
+                    correctAnswer: correctAnswer,
+                    attempts: []
+                };
+                
+                if (attempts >= maxAttempts) {
+                    break;
+                }
+                
+            } while (usedQuestions.has(questionString));
+            
+            lastOperations.push(question.operation);
+            if (lastOperations.length > 5) {
+                lastOperations.shift();
+            }
+            
+            usedQuestions.add(questionString);
+            currentQuestion = question;
+            
+            document.getElementById('questionDisplay').textContent = question.text;
+            document.getElementById('feedback').innerHTML = '';
+            
+            // Show appropriate input fields
+            if (question.operation === '÷') {
+                document.getElementById('simpleAnswer').classList.add('hidden');
+                document.getElementById('divisionAnswer').classList.remove('hidden');
+                document.getElementById('quotient').value = '';
+                document.getElementById('remainder').value = '';
+                setTimeout(() => document.getElementById('quotient').focus(), 100);
+            } else {
+                document.getElementById('simpleAnswer').classList.remove('hidden');
+                document.getElementById('divisionAnswer').classList.add('hidden');
+                document.getElementById('answer').value = '';
+                setTimeout(() => document.getElementById('answer').focus(), 100);
+            }
+        }
+
+        // Check answer function
+        function checkAnswer() {
+            let userAnswer;
+            let isCorrect = false;
+            
+            if (currentQuestion.operation === '÷') {
+                const quotient = parseInt(document.getElementById('quotient').value);
+                const remainder = parseInt(document.getElementById('remainder').value);
+                
+                if (isNaN(quotient) || isNaN(remainder)) {
+                    alert('Please enter both quotient and remainder!');
+                    return;
+                }
+                
+                userAnswer = { quotient: quotient, remainder: remainder };
+                isCorrect = (quotient === currentQuestion.correctAnswer.quotient && 
+                           remainder === currentQuestion.correctAnswer.remainder);
+            } else {
+                const answer = parseInt(document.getElementById('answer').value);
+                
+                if (isNaN(answer)) {
+                    alert('Please enter a valid number!');
+                    return;
+                }
+                
+                userAnswer = answer;
+                isCorrect = (answer === currentQuestion.correctAnswer);
+            }
+            
+            currentQuestion.attempts.push({
+                answer: userAnswer,
+                isCorrect: isCorrect,
+                isSkipped: false,
+                timestamp: new Date().toLocaleTimeString()
+            });
+            
+            const feedback = document.getElementById('feedback');
+            if (isCorrect) {
+                feedback.innerHTML = '<div class="correct"><span class="tick">✓</span> Correct! Well done!</div>';
+                
+                questionHistory.push({
+                    question: currentQuestion.text,
+                    attempts: currentQuestion.attempts,
+                    correctAnswer: currentQuestion.correctAnswer,
+                    isFirstAttemptCorrect: currentQuestion.attempts.length === 1,
+                    isSkipped: false,
+                    operation: currentQuestion.operation
+                });
+                
+                setTimeout(() => {
+                    generateQuestion();
+                }, 2000);
+            } else {
+                feedback.innerHTML = `<div style="color: #f44336; font-size: 18px; margin: 20px 0;">
+                    ❌ Incorrect. Try again!
+                </div>`;
+                
+                if (currentQuestion.operation === '÷') {
+                    document.getElementById('quotient').value = '';
+                    document.getElementById('remainder').value = '';
+                } else {
+                    document.getElementById('answer').value = '';
+                }
+            }
+        }
+
+        // Skip question function
+        function skipQuestion() {
+            console.log('Skip button clicked'); // Debug
+            if (!currentQuestion) {
+                alert('No current question to skip!');
+                return;
+            }
+            
+            // Show custom confirmation dialog
+            document.getElementById('customConfirm').style.display = 'flex';
+        }
+
+        // Handle confirmation response
+        function confirmSkip(userChoice) {
+            // Hide the confirmation dialog
+            document.getElementById('customConfirm').style.display = 'none';
+            
+            if (userChoice === true) {
+                console.log('User chose Yes to skip');
+                
+                // Ensure attempts array exists
+                if (!currentQuestion.attempts) {
+                    currentQuestion.attempts = [];
+                }
+                
+                // Add the skip action as the final attempt
+                currentQuestion.attempts.push({
+                    answer: 'SKIPPED',
+                    isCorrect: false,
+                    isSkipped: true,
+                    timestamp: new Date().toLocaleTimeString()
+                });
+                
+                // Save the question with all attempts (including any wrong answers before skipping)
+                questionHistory.push({
+                    question: currentQuestion.text,
+                    attempts: [...currentQuestion.attempts], // Copy all attempts
+                    correctAnswer: currentQuestion.correctAnswer,
+                    isFirstAttemptCorrect: false, // Can't be correct on first attempt if skipped
+                    isSkipped: true,
+                    operation: currentQuestion.operation
+                });
+                
+                const feedback = document.getElementById('feedback');
+                feedback.innerHTML = `<div style="color: #ff9800; font-size: 18px; margin: 20px 0;">
+                    ⏭️ Question skipped. Moving to next question...
+                </div>`;
+                
+                setTimeout(() => {
+                    generateQuestion();
+                }, 1500);
+            } else {
+                console.log('User chose No - continuing with current question');
+                // User chose No, continue with current question
+            }
+        }
+
+        // Show status function
+        function showStatus() {
+            const modal = document.getElementById('statusModal');
+            const statusList = document.getElementById('statusList');
+            
+            if (questionHistory.length === 0) {
+                statusList.innerHTML = '<p>No questions answered yet!</p>';
+            } else {
+                const totalQuestions = questionHistory.length;
+                const firstAttemptCorrect = questionHistory.filter(q => q.isFirstAttemptCorrect).length;
+                const skippedQuestions = questionHistory.filter(q => q.isSkipped).length;
+                const totalAttempts = questionHistory.reduce((sum, q) => sum + q.attempts.length, 0);
+                
+                let html = `<h3>${candidateName}'s Quiz Results</h3>
+                           <div style="background: #f0f8ff; padding: 15px; border-radius: 10px; margin: 20px 0;">
+                               <p><strong>📊 Score:</strong> ${firstAttemptCorrect} out of ${totalQuestions} questions answered correctly on first attempt</p>
+                               <p><strong>🎯 First Attempt Success Rate:</strong> ${totalQuestions > 0 ? Math.round((firstAttemptCorrect / totalQuestions) * 100) : 0}%</p>
+                               <p><strong>📈 Total Questions:</strong> ${totalQuestions}</p>
+                               <p><strong>⏭️ Skipped Questions:</strong> ${skippedQuestions}</p>
+                               <p><strong>📝 Total Attempts:</strong> ${totalAttempts}</p>
+                           </div>
+                           <hr style="margin: 20px 0;">`;
+                
+                questionHistory.forEach((item, index) => {
+                    const statusClass = item.isSkipped ? 'skipped' : (item.isFirstAttemptCorrect ? 'correct' : 'incorrect');
+                    
+                    html += `<div class="status-item ${statusClass}" style="${item.isSkipped ? 'background: #fff3e0; border-left-color: #ff9800;' : ''}">
+                        <strong>Q${index + 1}:</strong> ${item.question} <br>`;
+                    
+                    if (item.isSkipped) {
+                        // Show all attempts including wrong answers before skipping
+                        const wrongAttempts = item.attempts.filter(attempt => !attempt.isSkipped);
+                        const skipAttempt = item.attempts.find(attempt => attempt.isSkipped);
+                        
+                        if (wrongAttempts.length > 0) {
+                            html += `<strong>Wrong Attempts Before Skipping:</strong> ${wrongAttempts.length}<br>`;
+                            wrongAttempts.forEach((attempt, attemptIndex) => {
+                                let attemptText;
+                                if (item.operation === '÷') {
+                                    attemptText = `Q: ${attempt.answer.quotient}, R: ${attempt.answer.remainder}`;
+                                } else {
+                                    attemptText = attempt.answer;
+                                }
+                                html += `<strong>Attempt ${attemptIndex + 1}:</strong> ${attemptText} ✗ (${attempt.timestamp})<br>`;
+                            });
+                        }
+                        
+                        html += `<strong>Status:</strong> ⏭️ SKIPPED - Requires evaluation<br>`;
+                        if (skipAttempt) {
+                            html += `<strong>Skipped at:</strong> ${skipAttempt.timestamp}<br>`;
+                        }
+                    } else {
+                        html += `<strong>Attempts:</strong> ${item.attempts.length} <br>`;
+                        
+                        item.attempts.forEach((attempt, attemptIndex) => {
+                            if (!attempt.isSkipped) {
+                                let attemptText;
+                                if (item.operation === '÷') {
+                                    attemptText = `Q: ${attempt.answer.quotient}, R: ${attempt.answer.remainder}`;
+                                } else {
+                                    attemptText = attempt.answer;
+                                }
+                                
+                                html += `<strong>Attempt ${attemptIndex + 1}:</strong> ${attemptText} ${attempt.isCorrect ? '✓' : '✗'} (${attempt.timestamp})<br>`;
+                            }
+                        });
+                    }
+                    
+                    html += `<strong>Result:</strong> ${item.isSkipped ? '⏭️ Skipped for evaluation' : (item.isFirstAttemptCorrect ? '✓ Correct on first try' : '✗ Required multiple attempts')}
+                    </div>`;
+                });
+                
+                statusList.innerHTML = html;
+            }
+            
+            modal.style.display = 'flex';
+        }
+
+        // Close status function
+        function closeStatus() {
+            document.getElementById('statusModal').style.display = 'none';
+        }
+
+        // End quiz function
+        function endQuiz() {
+            if (confirm('Are you sure you want to end the quiz? This will clear all progress and start from the beginning.')) {
+                candidateName = '';
+                currentQuestion = null;
+                questionHistory = [];
+                usedQuestions.clear();
+                lastOperations = [];
+                
+                document.getElementById('statusModal').style.display = 'none';
+                
+                const nameSection = document.getElementById('nameSection');
+                const quizSection = document.getElementById('quizSection');
+                
+                nameSection.classList.remove('hidden');
+                quizSection.classList.add('hidden');
+                
+                document.getElementById('candidateName').value = '';
+                document.getElementById('answer').value = '';
+                document.getElementById('quotient').value = '';
+                document.getElementById('remainder').value = '';
+                
+                document.getElementById('feedback').innerHTML = '';
+                document.getElementById('welcomeMessage').textContent = '';
+                document.getElementById('questionDisplay').textContent = '';
+                
+                setTimeout(() => {
+                    document.getElementById('candidateName').focus();
+                }, 100);
+            }
+        }
+
+        // Event listeners
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                if (!document.getElementById('quizSection').classList.contains('hidden')) {
+                    checkAnswer();
+                } else if (!document.getElementById('nameSection').classList.contains('hidden')) {
+                    startQuiz();
+                }
+            }
+        });
+
+        document.getElementById('statusModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeStatus();
+            }
+        });
+
+        // Close custom confirm dialog when clicking outside
+        document.getElementById('customConfirm').addEventListener('click', function(e) {
+            if (e.target === this) {
+                confirmSkip(false); // Treat as "No"
+            }
+        });
+    </script>
+</body>
+</html>

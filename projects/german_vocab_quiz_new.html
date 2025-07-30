@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .loading {
+            font-size: 18px;
+            color: #666;
+            margin: 20px 0;
+        }
+
+        .quiz-section {
+            display: none;
+        }
+
+        .quiz-section.active {
+            display: block;
+        }
+
+        .question {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .english-word {
+            font-size: 2em;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .input-section {
+            margin: 20px 0;
+        }
+
+        input[type="text"] {
+            font-size: 18px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 300px;
+            margin: 10px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .buttons {
+            margin: 20px 0;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 100px;
+        }
+
+        button:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .skip-btn {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .skip-btn:hover {
+            background: #e0a800;
+        }
+
+        .stats-btn {
+            background: #28a745;
+        }
+
+        .stats-btn:hover {
+            background: #218838;
+        }
+
+        .reset-btn {
+            background: #dc3545;
+        }
+
+        .reset-btn:hover {
+            background: #c82333;
+        }
+
+        .feedback {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #d4edda !important;
+            color: #155724 !important;
+            border: 1px solid #c3e6cb !important;
+            display: block !important;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da !important;
+            color: #721c24 !important;
+            border: 1px solid #f5c6cb !important;
+            display: block !important;
+        }
+
+        .feedback.skipped {
+            background: #fff3cd !important;
+            color: #856404 !important;
+            border: 1px solid #ffeaa7 !important;
+            display: block !important;
+        }
+
+        .skip-confirmation {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .skip-confirmation-buttons {
+            margin-top: 15px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .yes-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        .yes-btn:hover {
+            background: #c82333;
+        }
+
+        .no-btn {
+            background: #6c757d;
+            color: white;
+        }
+
+        .no-btn:hover {
+            background: #5a6268;
+        }
+
+        .tick {
+            color: #28a745;
+            font-size: 24px;
+            margin-left: 10px;
+        }
+
+        .stats-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .stats-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .stats-header {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .stats-numbers {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .wrong-answers {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .wrong-answer-item {
+            background: #f8f9fa;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border-left: 3px solid #dc3545;
+        }
+
+        .close-stats {
+            background: #6c757d;
+            margin-top: 20px;
+        }
+
+        .progress-info {
+            margin: 20px 0;
+            color: #666;
+        }
+
+        .attempts {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🇩🇪 German Vocabulary Quiz</h1>
+        
+        <div class="loading" id="loading">
+            Loading vocabulary files...
+        </div>
+
+        <div class="quiz-section" id="quizSection">
+            <div class="progress-info">
+                <span id="progressText">Question 1</span>
+            </div>
+            
+            <div class="question">
+                <div class="english-word" id="englishWord">Loading...</div>
+                <div class="attempts" id="attempts"></div>
+            </div>
+
+            <div class="input-section">
+                <input type="text" id="answerInput" placeholder="Enter German translation..." autocomplete="off">
+            </div>
+
+            <div class="feedback" id="feedback"></div>
+
+            <div class="skip-confirmation" id="skipConfirmation">
+                <div style="font-weight: bold; margin-bottom: 10px;">Skip this question?</div>
+                <div>Are you sure you want to skip this question and move to the next one?</div>
+                <div class="skip-confirmation-buttons">
+                    <button onclick="confirmSkip()" class="yes-btn">Yes</button>
+                    <button onclick="cancelSkip()" class="no-btn">No</button>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button onclick="checkAnswer()" id="submitBtn">Submit</button>
+                <button onclick="skipQuestion()" class="skip-btn">Skip</button>
+                <button onclick="showStats()" class="stats-btn">Stats</button>
+                <button onclick="resetQuiz()" class="reset-btn">Reset</button>
+            </div>
+        </div>
+
+        <!-- Stats Modal -->
+        <div class="stats-modal" id="statsModal">
+            <div class="stats-content">
+                <div class="stats-header">
+                    <h2>📊 Quiz Statistics</h2>
+                </div>
+                
+                <div class="stats-numbers">
+                    <div class="stat-item">
+                        <div class="stat-number" id="correctCount">0</div>
+                        <div class="stat-label">Correct</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="wrongCount">0</div>
+                        <div class="stat-label">Wrong</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="accuracyRate">0%</div>
+                        <div class="stat-label">Accuracy</div>
+                    </div>
+                </div>
+
+                <div class="wrong-answers" id="wrongAnswersSection" style="display: none;">
+                    <h3>❌ Wrong Answers</h3>
+                    <div id="wrongAnswersList"></div>
+                </div>
+
+                <button onclick="closeStats()" class="close-stats">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let vocabularyPairs = [];
+        let currentQuestion = null;
+        let currentAttempts = 0;
+        let stats = {
+            correct: 0,
+            wrong: 0,
+            wrongAnswers: []
+        };
+        let questionCount = 0;
+
+        // GitHub repository information with CORS proxy
+        const GITHUB_API_URL = 'https://api.allorigins.win/get?url=' + encodeURIComponent('https://api.github.com/repos/SnowflakeCoder/my-public-space/contents/resources/german');
+        const GITHUB_API_URL_BACKUP = 'https://corsproxy.io/?' + encodeURIComponent('https://api.github.com/repos/SnowflakeCoder/my-public-space/contents/resources/german');
+        const RAW_BASE_URL = 'https://raw.githubusercontent.com/SnowflakeCoder/my-public-space/main/resources/german';
+        
+        // Known vocabulary files (fallback if API fails)
+        const KNOWN_FILES = [
+            'basic_words.txt',
+            'verbs.txt', 
+            'nouns.txt',
+            'adjectives.txt',
+            'common_phrases.txt'
+        ];
+
+        // Initialize the quiz
+        async function initializeQuiz() {
+            try {
+                await loadVocabularyFiles();
+                
+                if (vocabularyPairs.length > 0) {
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('quizSection').classList.add('active');
+                    nextQuestion();
+                } else {
+                    // Show sample data option if no files found
+                    showNoDataFoundMessage();
+                }
+            } catch (error) {
+                console.error('Error initializing quiz:', error);
+                showErrorMessage(error.message);
+            }
+        }
+
+        // Show error message with suggestions
+        function showErrorMessage(errorMsg) {
+            document.getElementById('loading').innerHTML = `
+                <div style="color: #dc3545; margin: 20px 0;">
+                    <h3>❌ Unable to load vocabulary files</h3>
+                    <p><strong>Error:</strong> ${errorMsg}</p>
+                    <div style="text-align: left; margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                        <h4>📝 Expected file format:</h4>
+                        <pre style="margin: 10px 0; font-family: monospace;">hello = hallo
+cat = katze
+dog = hund
+water = wasser</pre>
+                        <p style="margin: 10px 0;"><strong>Supported separators:</strong> = : | -> (tab)</p>
+                    </div>
+                    <button onclick="loadSampleData()" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 10px 5px;">
+                        Load Sample Data
+                    </button>
+                    <button onclick="location.reload()" style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 10px 5px;">
+                        Try Again
+                    </button>
+                </div>
+            `;
+        }
+
+        // Show message when no data found but offer sample data
+        function showNoDataFoundMessage() {
+            document.getElementById('loading').innerHTML = `
+                <div style="color: #ffc107; margin: 20px 0;">
+                    <h3>📂 No vocabulary files found</h3>
+                    <p>No vocabulary pairs could be loaded from the GitHub repository.</p>
+                    <p>Make sure your files contain lines in the format: <code>english word = german word</code></p>
+                    <button onclick="loadSampleData()" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 10px;">
+                        Load Sample Data to Test
+                    </button>
+                </div>
+            `;
+        }
+
+        // Load sample data for testing
+        function loadSampleData() {
+            const sampleData = `# Sample German Vocabulary
+hello = hallo
+goodbye = auf wiedersehen
+please = bitte
+thank you = danke
+yes = ja
+no = nein
+water = wasser
+food = essen
+house = haus
+car = auto
+cat = katze
+dog = hund
+book = buch
+time = zeit
+love = liebe
+friend = freund
+family = familie
+work = arbeit
+school = schule
+money = geld
+today = heute
+tomorrow = morgen
+yesterday = gestern
+good = gut
+bad = schlecht
+big = groß
+small = klein
+beautiful = schön
+happy = glücklich
+sad = traurig`;
+
+            vocabularyPairs = [];
+            parseVocabularyFile(sampleData);
+            
+            if (vocabularyPairs.length > 0) {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('quizSection').classList.add('active');
+                nextQuestion();
+                
+                // Show a notice that this is sample data
+                setTimeout(() => {
+                    alert(`🎯 Loaded ${vocabularyPairs.length} sample vocabulary pairs for testing!\n\nTo use your own vocabulary, make sure your GitHub repository contains text files with the format:\nenglish word = german word`);
+                }, 500);
+            }
+        }
+
+        // Load vocabulary files from GitHub
+        async function loadVocabularyFiles() {
+            document.getElementById('loading').textContent = 'Connecting to GitHub repository...';
+            
+            // Try multiple CORS proxies
+            const apiUrls = [GITHUB_API_URL, GITHUB_API_URL_BACKUP];
+            
+            for (let i = 0; i < apiUrls.length; i++) {
+                try {
+                    document.getElementById('loading').textContent = `Connecting to GitHub... (attempt ${i + 1}/${apiUrls.length})`;
+                    
+                    const response = await fetch(apiUrls[i]);
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                    
+                    const proxyResponse = await response.json();
+                    let files;
+                    
+                    // Handle different proxy response formats
+                    if (proxyResponse.contents) {
+                        files = JSON.parse(proxyResponse.contents);
+                    } else if (Array.isArray(proxyResponse)) {
+                        files = proxyResponse;
+                    } else {
+                        throw new Error('Invalid proxy response format');
+                    }
+                    
+                    if (!Array.isArray(files)) {
+                        throw new Error('Invalid GitHub API response');
+                    }
+
+                    document.getElementById('loading').textContent = 'Loading vocabulary files...';
+
+                    // Filter for text files
+                    const textFiles = files.filter(file => 
+                        file.type === 'file' && 
+                        (file.name.endsWith('.txt') || file.name.endsWith('.text'))
+                    );
+
+                    if (textFiles.length === 0) {
+                        throw new Error('No text files found in repository');
+                    }
+
+                    // Load each text file
+                    let loadedCount = 0;
+                    for (const file of textFiles) {
+                        try {
+                            document.getElementById('loading').textContent = `Loading ${file.name}... (${loadedCount + 1}/${textFiles.length})`;
+                            const fileUrl = `${RAW_BASE_URL}/${file.name}`;
+                            const fileResponse = await fetch(fileUrl);
+                            
+                            if (!fileResponse.ok) {
+                                console.warn(`Failed to load ${file.name}: ${fileResponse.status}`);
+                                continue;
+                            }
+                            
+                            const content = await fileResponse.text();
+                            const beforeCount = vocabularyPairs.length;
+                            parseVocabularyFile(content);
+                            const afterCount = vocabularyPairs.length;
+                            
+                            console.log(`Loaded ${afterCount - beforeCount} pairs from ${file.name}`);
+                            loadedCount++;
+                        } catch (error) {
+                            console.warn(`Error loading file ${file.name}:`, error);
+                        }
+                    }
+
+                    console.log(`Successfully loaded ${vocabularyPairs.length} vocabulary pairs from ${loadedCount} files`);
+                    
+                    if (vocabularyPairs.length === 0) {
+                        throw new Error('No vocabulary pairs found in any files');
+                    }
+                    
+                    // Successfully loaded, break out of retry loop
+                    return;
+                    
+                } catch (error) {
+                    console.error(`GitHub API attempt ${i + 1} failed:`, error);
+                    
+                    // If this was the last attempt, try fallback
+                    if (i === apiUrls.length - 1) {
+                        console.error('All GitHub API attempts failed, trying fallback approach');
+                        
+                        // Fallback: try to load known files directly
+                        document.getElementById('loading').textContent = 'Trying fallback method...';
+                        await loadFallbackFiles();
+                        
+                        if (vocabularyPairs.length === 0) {
+                            throw new Error('Could not load any vocabulary files. Please check if the repository contains text files with "english = german" format.');
+                        }
+                    }
+                }
+            }
+        }
+
+        // Fallback method to load known files directly
+        async function loadFallbackFiles() {
+            let loadedCount = 0;
+            
+            for (const fileName of KNOWN_FILES) {
+                try {
+                    document.getElementById('loading').textContent = `Trying to load ${fileName}...`;
+                    const fileUrl = `${RAW_BASE_URL}/${fileName}`;
+                    const response = await fetch(fileUrl);
+                    
+                    if (response.ok) {
+                        const content = await response.text();
+                        const beforeCount = vocabularyPairs.length;
+                        parseVocabularyFile(content);
+                        const afterCount = vocabularyPairs.length;
+                        
+                        if (afterCount > beforeCount) {
+                            console.log(`Loaded ${afterCount - beforeCount} pairs from ${fileName}`);
+                            loadedCount++;
+                        }
+                    }
+                } catch (error) {
+                    console.warn(`Could not load ${fileName}:`, error);
+                }
+            }
+            
+            // Try loading any .txt file directly
+            if (vocabularyPairs.length === 0) {
+                const commonNames = ['vocab.txt', 'vocabulary.txt', 'words.txt', 'german.txt', 'deutsch.txt'];
+                
+                for (const fileName of commonNames) {
+                    try {
+                        document.getElementById('loading').textContent = `Trying ${fileName}...`;
+                        const fileUrl = `${RAW_BASE_URL}/${fileName}`;
+                        const response = await fetch(fileUrl);
+                        
+                        if (response.ok) {
+                            const content = await response.text();
+                            parseVocabularyFile(content);
+                            
+                            if (vocabularyPairs.length > 0) {
+                                console.log(`Successfully loaded vocabulary from ${fileName}`);
+                                break;
+                            }
+                        }
+                    } catch (error) {
+                        // Ignore errors for these fallback attempts
+                    }
+                }
+            }
+            
+            console.log(`Fallback method loaded ${vocabularyPairs.length} vocabulary pairs`);
+        }
+
+        // Parse vocabulary file content
+        function parseVocabularyFile(content) {
+            const lines = content.split('\n');
+            let parsedCount = 0;
+            
+            for (const line of lines) {
+                const trimmedLine = line.trim();
+                
+                // Skip empty lines and comments
+                if (!trimmedLine || trimmedLine.startsWith('#') || trimmedLine.startsWith('//')) {
+                    continue;
+                }
+                
+                // Support multiple separators: = : | ->
+                let english = '';
+                let german = '';
+                
+                if (trimmedLine.includes(' = ')) {
+                    [english, german] = trimmedLine.split(' = ').map(s => s.trim());
+                } else if (trimmedLine.includes('=')) {
+                    [english, german] = trimmedLine.split('=').map(s => s.trim());
+                } else if (trimmedLine.includes(' : ')) {
+                    [english, german] = trimmedLine.split(' : ').map(s => s.trim());
+                } else if (trimmedLine.includes(':')) {
+                    [english, german] = trimmedLine.split(':').map(s => s.trim());
+                } else if (trimmedLine.includes(' | ')) {
+                    [english, german] = trimmedLine.split(' | ').map(s => s.trim());
+                } else if (trimmedLine.includes(' -> ')) {
+                    [english, german] = trimmedLine.split(' -> ').map(s => s.trim());
+                } else if (trimmedLine.includes('\t')) {
+                    [english, german] = trimmedLine.split('\t').map(s => s.trim());
+                }
+                
+                if (english && german) {
+                    // Remove quotes if present
+                    english = english.replace(/['"]/g, '').trim();
+                    german = german.replace(/['"]/g, '').trim();
+                    
+                    // Handle cases where German might have multiple options (separated by / or ,)
+                    // For now, we'll take the first option for the quiz
+                    if (german.includes('/')) {
+                        german = german.split('/')[0].trim();
+                    }
+                    if (german.includes(',')) {
+                        german = german.split(',')[0].trim();
+                    }
+                    
+                    vocabularyPairs.push({ english, german });
+                    parsedCount++;
+                }
+            }
+            
+            console.log(`Parsed ${parsedCount} vocabulary pairs from file`);
+        }
+
+        // Get next random question
+        function nextQuestion() {
+            if (vocabularyPairs.length === 0) return;
+            
+            const randomIndex = Math.floor(Math.random() * vocabularyPairs.length);
+            currentQuestion = vocabularyPairs[randomIndex];
+            currentAttempts = 0;
+            questionCount++;
+
+            document.getElementById('englishWord').textContent = currentQuestion.english;
+            document.getElementById('answerInput').value = '';
+            document.getElementById('answerInput').disabled = false;
+            document.getElementById('feedback').style.display = 'none';
+            document.getElementById('feedback').className = 'feedback';  // Reset feedback classes
+            document.getElementById('skipConfirmation').style.display = 'none';
+            document.getElementById('submitBtn').disabled = false;
+            document.getElementById('attempts').textContent = '';
+            document.getElementById('progressText').textContent = `Question ${questionCount}`;
+            
+            // Focus on input
+            document.getElementById('answerInput').focus();
+        }
+
+        // Check the user's answer
+        function checkAnswer() {
+            const userAnswer = document.getElementById('answerInput').value.trim().toLowerCase();
+            const correctAnswer = currentQuestion.german.toLowerCase();
+            
+            currentAttempts++;
+
+            if (userAnswer === correctAnswer) {
+                // Correct answer
+                stats.correct++;
+                showFeedback('correct', `Correct! Well done! <span class="tick">✓</span>`);
+                document.getElementById('answerInput').disabled = true;
+                document.getElementById('submitBtn').disabled = true;
+                
+                setTimeout(() => {
+                    nextQuestion();
+                }, 2000);
+            } else {
+                // Wrong answer
+                if (currentAttempts >= 3) {
+                    // Max attempts reached
+                    stats.wrong++;
+                    stats.wrongAnswers.push({
+                        english: currentQuestion.english,
+                        correct: currentQuestion.german,
+                        userAnswer: document.getElementById('answerInput').value.trim()
+                    });
+                    showFeedback('incorrect', `Incorrect. Maximum attempts reached.`);
+                    document.getElementById('answerInput').disabled = true;
+                    document.getElementById('submitBtn').disabled = true;
+                    
+                    setTimeout(() => {
+                        nextQuestion();
+                    }, 2000);
+                } else {
+                    // Give another chance - show incorrect feedback but don't disable controls
+                    showFeedback('incorrect', `Incorrect. Try again!`);
+                    document.getElementById('attempts').textContent = `Attempts: ${currentAttempts}/3`;
+                    document.getElementById('answerInput').value = '';
+                    
+                    // Hide the feedback after a short time so user can try again
+                    setTimeout(() => {
+                        document.getElementById('feedback').style.display = 'none';
+                    }, 1500);
+                    
+                    document.getElementById('answerInput').focus();
+                }
+            }
+        }
+
+        // Skip current question - show confirmation first
+        function skipQuestion() {
+            // Hide any existing feedback
+            document.getElementById('feedback').style.display = 'none';
+            
+            // Show skip confirmation
+            document.getElementById('skipConfirmation').style.display = 'block';
+            
+            // Disable input and submit button temporarily
+            document.getElementById('answerInput').disabled = true;
+            document.getElementById('submitBtn').disabled = true;
+        }
+
+        // Confirm skip - actually skip the question
+        function confirmSkip() {
+            stats.wrong++;
+            stats.wrongAnswers.push({
+                english: currentQuestion.english,
+                correct: currentQuestion.german,
+                userAnswer: 'Skipped'
+            });
+            
+            // Hide skip confirmation
+            document.getElementById('skipConfirmation').style.display = 'none';
+            
+            // Show skipped feedback with orange background
+            showFeedback('skipped', `Question skipped. Moving to next question...`);
+            
+            setTimeout(() => {
+                nextQuestion();
+            }, 2000);
+        }
+
+        // Cancel skip - return to question
+        function cancelSkip() {
+            // Hide skip confirmation
+            document.getElementById('skipConfirmation').style.display = 'none';
+            
+            // Re-enable input and submit button
+            document.getElementById('answerInput').disabled = false;
+            document.getElementById('submitBtn').disabled = false;
+            
+            // Focus back on input
+            document.getElementById('answerInput').focus();
+        }
+
+        // Show feedback message
+        function showFeedback(type, message) {
+            const feedback = document.getElementById('feedback');
+            feedback.innerHTML = message;
+            feedback.className = `feedback ${type}`;
+            feedback.style.display = 'block';  // Explicitly show the feedback
+            
+            // Hide skip confirmation when showing other feedback
+            document.getElementById('skipConfirmation').style.display = 'none';
+        }
+
+        // Show stats modal
+        function showStats() {
+            const total = stats.correct + stats.wrong;
+            const accuracy = total > 0 ? Math.round((stats.correct / total) * 100) : 0;
+
+            document.getElementById('correctCount').textContent = stats.correct;
+            document.getElementById('wrongCount').textContent = stats.wrong;
+            document.getElementById('accuracyRate').textContent = `${accuracy}%`;
+
+            // Show wrong answers if any
+            const wrongAnswersSection = document.getElementById('wrongAnswersSection');
+            const wrongAnswersList = document.getElementById('wrongAnswersList');
+            
+            if (stats.wrongAnswers.length > 0) {
+                wrongAnswersSection.style.display = 'block';
+                wrongAnswersList.innerHTML = stats.wrongAnswers
+                    .map(item => `
+                        <div class="wrong-answer-item">
+                            <strong>${item.english}</strong> → ${item.correct}<br>
+                            <small>Your answer: ${item.userAnswer}</small>
+                        </div>
+                    `).join('');
+            } else {
+                wrongAnswersSection.style.display = 'none';
+            }
+
+            document.getElementById('statsModal').style.display = 'flex';
+        }
+
+        // Close stats modal
+        function closeStats() {
+            document.getElementById('statsModal').style.display = 'none';
+        }
+
+        // Reset quiz
+        function resetQuiz() {
+            if (confirm('Are you sure you want to reset all statistics and start over?')) {
+                stats = {
+                    correct: 0,
+                    wrong: 0,
+                    wrongAnswers: []
+                };
+                questionCount = 0;
+                nextQuestion();
+                closeStats();
+            }
+        }
+
+        // Handle Enter key press
+        document.getElementById('answerInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !document.getElementById('submitBtn').disabled) {
+                checkAnswer();
+            }
+        });
+
+        // Handle keyboard shortcuts for skip confirmation
+        document.addEventListener('keydown', function(e) {
+            const skipConfirmation = document.getElementById('skipConfirmation');
+            if (skipConfirmation.style.display === 'block') {
+                if (e.key === 'Enter' || e.key === 'y' || e.key === 'Y') {
+                    confirmSkip();
+                } else if (e.key === 'Escape' || e.key === 'n' || e.key === 'N') {
+                    cancelSkip();
+                }
+            }
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('statsModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeStats();
+            }
+        });
+
+        // Initialize the quiz when page loads
+        window.addEventListener('load', initializeQuiz);
+    </script>
+</body>
+</html>
