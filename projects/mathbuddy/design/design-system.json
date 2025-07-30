@@ -1,0 +1,247 @@
+{
+  "designSystem": {
+    "name": "Dark Financial App Design System",
+    "version": "1.0.0",
+    "colors": {
+      "primary": {
+        "50": "#ecfdf5",
+        "100": "#d1fae5",
+        "200": "#a7f3d0",
+        "300": "#6ee7b7",
+        "400": "#34d399",
+        "500": "#10b981",
+        "600": "#059669",
+        "700": "#047857",
+        "800": "#065f46",
+        "900": "#064e3b"
+      },
+      "background": {
+        "primary": "#1a1a1a",
+        "secondary": "#2d2d2d",
+        "tertiary": "#3a3a3a",
+        "card": "rgba(45, 45, 45, 0.8)",
+        "overlay": "rgba(0, 0, 0, 0.5)"
+      },
+      "surface": {
+        "elevated": "#2d2d2d",
+        "glass": "rgba(45, 45, 45, 0.7)",
+        "transparent": "rgba(255, 255, 255, 0.05)"
+      },
+      "text": {
+        "primary": "#ffffff",
+        "secondary": "rgba(255, 255, 255, 0.7)",
+        "tertiary": "rgba(255, 255, 255, 0.5)",
+        "disabled": "rgba(255, 255, 255, 0.3)"
+      },
+      "accent": {
+        "teal": "#14b8a6",
+        "emerald": "#10b981",
+        "cyan": "#06b6d4"
+      },
+      "status": {
+        "success": "#10b981",
+        "warning": "#f59e0b",
+        "error": "#ef4444",
+        "info": "#3b82f6"
+      }
+    },
+    "typography": {
+      "fontFamily": {
+        "primary": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif",
+        "mono": "'SF Mono', 'Monaco', 'Inconsolata', monospace"
+      },
+      "fontSize": {
+        "xs": "12px",
+        "sm": "14px",
+        "base": "16px",
+        "lg": "18px",
+        "xl": "20px",
+        "2xl": "24px",
+        "3xl": "30px",
+        "4xl": "36px",
+        "5xl": "48px"
+      },
+      "fontWeight": {
+        "light": 300,
+        "normal": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700
+      },
+      "lineHeight": {
+        "tight": 1.2,
+        "normal": 1.5,
+        "relaxed": 1.75
+      }
+    },
+    "spacing": {
+      "xs": "4px",
+      "sm": "8px",
+      "md": "16px",
+      "lg": "24px",
+      "xl": "32px",
+      "2xl": "48px",
+      "3xl": "64px",
+      "4xl": "96px"
+    },
+    "borderRadius": {
+      "sm": "8px",
+      "md": "12px",
+      "lg": "16px",
+      "xl": "20px",
+      "2xl": "24px",
+      "full": "9999px"
+    },
+    "shadows": {
+      "sm": "0 1px 2px 0 rgba(0, 0, 0, 0.2)",
+      "md": "0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2)",
+      "lg": "0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3)",
+      "xl": "0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3)",
+      "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.6)",
+      "inner": "inset 0 2px 4px 0 rgba(0, 0, 0, 0.2)"
+    },
+    "components": {
+      "card": {
+        "base": {
+          "backgroundColor": "rgba(45, 45, 45, 0.8)",
+          "borderRadius": "20px",
+          "padding": "24px",
+          "boxShadow": "0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3)",
+          "backdropFilter": "blur(10px)",
+          "border": "1px solid rgba(255, 255, 255, 0.1)"
+        },
+        "elevated": {
+          "backgroundColor": "rgba(45, 45, 45, 0.9)",
+          "boxShadow": "0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3)"
+        }
+      },
+      "button": {
+        "primary": {
+          "backgroundColor": "#10b981",
+          "color": "#ffffff",
+          "borderRadius": "16px",
+          "padding": "12px 24px",
+          "fontSize": "16px",
+          "fontWeight": 500,
+          "border": "none",
+          "boxShadow": "0 4px 6px -1px rgba(16, 185, 129, 0.3)",
+          "transition": "all 0.2s ease"
+        },
+        "secondary": {
+          "backgroundColor": "rgba(255, 255, 255, 0.1)",
+          "color": "#ffffff",
+          "borderRadius": "16px",
+          "padding": "12px 24px",
+          "fontSize": "16px",
+          "fontWeight": 500,
+          "border": "1px solid rgba(255, 255, 255, 0.2)",
+          "backdropFilter": "blur(10px)",
+          "transition": "all 0.2s ease"
+        },
+        "icon": {
+          "backgroundColor": "transparent",
+          "color": "rgba(255, 255, 255, 0.7)",
+          "borderRadius": "12px",
+          "padding": "8px",
+          "border": "1px solid rgba(255, 255, 255, 0.1)",
+          "backdropFilter": "blur(10px)"
+        }
+      },
+      "input": {
+        "base": {
+          "backgroundColor": "rgba(255, 255, 255, 0.05)",
+          "borderRadius": "12px",
+          "padding": "16px",
+          "fontSize": "16px",
+          "color": "#ffffff",
+          "border": "1px solid rgba(255, 255, 255, 0.1)",
+          "backdropFilter": "blur(10px)"
+        }
+      },
+      "navigation": {
+        "tabBar": {
+          "backgroundColor": "rgba(45, 45, 45, 0.9)",
+          "borderRadius": "20px",
+          "padding": "8px",
+          "backdropFilter": "blur(10px)",
+          "border": "1px solid rgba(255, 255, 255, 0.1)"
+        },
+        "tabItem": {
+          "backgroundColor": "transparent",
+          "borderRadius": "12px",
+          "padding": "12px",
+          "color": "rgba(255, 255, 255, 0.6)"
+        },
+        "tabItemActive": {
+          "backgroundColor": "#ffffff",
+          "color": "#2d2d2d"
+        }
+      },
+      "chart": {
+        "bar": {
+          "primaryColor": "#10b981",
+          "backgroundColor": "rgba(255, 255, 255, 0.1)",
+          "borderRadius": "4px"
+        },
+        "line": {
+          "strokeColor": "#10b981",
+          "strokeWidth": "2px",
+          "pointColor": "#ffffff",
+          "pointSize": "6px"
+        }
+      },
+      "avatar": {
+        "base": {
+          "borderRadius": "50%",
+          "border": "2px solid rgba(255, 255, 255, 0.2)"
+        },
+        "sizes": {
+          "sm": "32px",
+          "md": "48px",
+          "lg": "64px",
+          "xl": "96px"
+        }
+      },
+      "badge": {
+        "base": {
+          "backgroundColor": "rgba(16, 185, 129, 0.2)",
+          "color": "#10b981",
+          "borderRadius": "8px",
+          "padding": "4px 8px",
+          "fontSize": "12px",
+          "fontWeight": 500
+        }
+      }
+    },
+    "layout": {
+      "container": {
+        "maxWidth": "1200px",
+        "padding": "0 16px",
+        "margin": "0 auto"
+      },
+      "grid": {
+        "columns": 12,
+        "gap": "16px"
+      },
+      "breakpoints": {
+        "mobile": "375px",
+        "tablet": "768px",
+        "desktop": "1024px",
+        "wide": "1440px"
+      }
+    },
+    "animations": {
+      "duration": {
+        "fast": "0.15s",
+        "normal": "0.2s",
+        "slow": "0.3s"
+      },
+      "easing": {
+        "ease": "ease",
+        "easeIn": "ease-in",
+        "easeOut": "ease-out",
+        "easeInOut": "ease-in-out"
+      }
+    }
+  }
+}

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathBuddy Home - Sample Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            color: white;
+            font-weight: 500;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 16px 32px;
+            min-height: 48px;
+            font-size: 16px;
+            line-height: 24px;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(to right, #2563eb, #7c3aed);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: black;
+            font-weight: 500;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 8px 12px;
+            font-size: 14px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .btn-secondary:hover {
+            background: #f9fafb;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-1px);
+        }
+        
+        .card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding: 32px;
+        }
+        
+        .text-primary {
+            color: black;
+        }
+        
+        .text-secondary {
+            color: black;
+            opacity: 0.7;
+        }
+        
+        .text-muted {
+            color: black;
+            opacity: 0.5;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-complete {
+            background: linear-gradient(135deg, #10b981 0%, #065f46 100%);
+        }
+        
+        .progress-partial {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen bg-gray-50">
+        <!-- Navigation -->
+        <nav class="bg-white shadow-sm border-b">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center">
+                        <h1 class="text-xl font-semibold text-gray-900">MathBuddy Home</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-700">Welcome, student@mathbuddy.com!</span>
+                        <button class="btn-secondary">
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main style="padding: 32px 16px;">
+            <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px;">
+                
+                <!-- Header with Create Button -->
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2 class="text-primary font-bold" style="font-size: 24px; line-height: 32px;">
+                        My Exercises
+                    </h2>
+                    <button class="btn-primary">
+                        Create New Exercise
+                    </button>
+                </div>
+
+                <!-- Exercises List -->
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                    
+                    <!-- Exercise 1 - Completed -->
+                    <div class="card" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="flex: 1;">
+                            <h3 class="text-primary font-bold" style="font-size: 20px; line-height: 28px; margin-bottom: 8px;">
+                                Basic Addition Practice
+                            </h3>
+                            <div class="text-secondary" style="font-size: 14px; line-height: 20px; margin-bottom: 8px;">
+                                <span>Total Questions: 20</span> • 
+                                <span> Code: ABC123</span> • 
+                                <span> Created: 7/25/2025</span>
+                            </div>
+                            
+                            <!-- Progress Bar -->
+                            <div style="margin-bottom: 8px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                                    <span class="text-secondary" style="font-size: 12px; line-height: 16px;">
+                                        Progress: 20 / 20 completed (100%)
+                                    </span>
+                                    <span class="text-secondary" style="font-size: 12px; line-height: 16px;">
+                                        Score: 18
+                                    </span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-complete" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-muted" style="font-size: 12px; line-height: 16px;">
+                                http://localhost:4000/exercise/ABC123
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn-secondary">
+                                Copy Link
+                            </button>
+                            <button class="btn-primary" style="font-size: 14px; padding: 8px 12px;">
+                                Open Exercise
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Exercise 2 - Partially Completed -->
+                    <div class="card" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="flex: 1;">
+                            <h3 class="text-primary font-bold" style="font-size: 20px; line-height: 28px; margin-bottom: 8px;">
+                                Multiplication Tables 1-5
+                            </h3>
+                            <div class="text-secondary" style="font-size: 14px; line-height: 20px; margin-bottom: 8px;">
+                                <span>Total Questions: 50</span> • 
+                                <span> Code: XYZ789</span> • 
+                                <span> Created: 7/26/2025</span>
+                            </div>
+                            
+                            <!-- Progress Bar -->
+                            <div style="margin-bottom: 8px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                                    <span class="text-secondary" style="font-size: 12px; line-height: 16px;">
+                                        Progress: 32 / 50 completed (64%)
+                                    </span>
+                                    <span class="text-secondary" style="font-size: 12px; line-height: 16px;">
+                                        Score: 28
+                                    </span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-partial" style="width: 64%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-muted" style="font-size: 12px; line-height: 16px;">
+                                http://localhost:4000/exercise/XYZ789
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn-secondary">
+                                Copy Link
+                            </button>
+                            <button class="btn-primary" style="font-size: 14px; padding: 8px 12px;">
+                                Continue Exercise
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Exercise 3 - Just Started -->
+                    <div class="card" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="flex: 1;">
+                            <h3 class="text-primary font-bold" style="font-size: 20px; line-height: 28px; margin-bottom: 8px;">
+                                Advanced Division Problems
+                            </h3>
+                            <div class="text-secondary" style="font-size: 14px; line-height: 20px; margin-bottom: 8px;">
+                                <span>Total Questions: 30</span> • 
+                                <span> Code: DEF456</span> • 
+                                <span> Created: 7/27/2025</span>
+                            </div>
+                            
+                            <!-- Progress Bar -->
+                            <div style="margin-bottom: 8px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                                    <span class="text-secondary" style="font-size: 12px; line-height: 16px;">
+                                        Progress: 3 / 30 completed (10%)
+                                    </span>
+                                    <span class="text-secondary" style="font-size: 12px; line-height: 16px;">
+                                        Score: 2
+                                    </span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-partial" style="width: 10%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-muted" style="font-size: 12px; line-height: 16px;">
+                                http://localhost:4000/exercise/DEF456
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn-secondary">
+                                Copy Link
+                            </button>
+                            <button class="btn-primary" style="font-size: 14px; padding: 8px 12px;">
+                                Continue Exercise
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Exercise 4 - Not Started -->
+                    <div class="card" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="flex: 1;">
+                            <h3 class="text-primary font-bold" style="font-size: 20px; line-height: 28px; margin-bottom: 8px;">
+                                Mixed Operations Quiz
+                            </h3>
+                            <div class="text-secondary" style="font-size: 14px; line-height: 20px; margin-bottom: 8px;">
+                                <span>Total Questions: 40</span> • 
+                                <span> Code: GHI012</span> • 
+                                <span> Created: 7/27/2025</span>
+                            </div>
+                            
+                            <!-- Progress Bar -->
+                            <div style="margin-bottom: 8px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                                    <span class="text-secondary" style="font-size: 12px; line-height: 16px;">
+                                        Progress: 0 / 40 completed (0%)
+                                    </span>
+                                    <span class="text-secondary" style="font-size: 12px; line-height: 16px;">
+                                        Score: 0
+                                    </span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%; background-color: #f0f0f0;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-muted" style="font-size: 12px; line-height: 16px;">
+                                http://localhost:4000/exercise/GHI012
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn-secondary">
+                                Copy Link
+                            </button>
+                            <button class="btn-primary" style="font-size: 14px; padding: 8px 12px;">
+                                Start Exercise
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

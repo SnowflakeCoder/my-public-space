@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathBuddy Home - Dark Design System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #1a1a1a;
+            color: #ffffff;
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            padding: 0 16px;
+            margin: 0 auto;
+        }
+        
+        /* Navigation */
+        .nav {
+            background: rgba(45, 45, 45, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        .nav-user {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .nav-welcome {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+        
+        /* Buttons */
+        .btn {
+            border: none;
+            border-radius: 16px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background: #10b981;
+            color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: #059669;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 8px -1px rgba(16, 185, 129, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
+        }
+        
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+        
+        /* Cards */
+        .card {
+            background: rgba(45, 45, 45, 0.8);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Main Content */
+        .main {
+            padding: 32px 0;
+        }
+        
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        
+        /* Exercise List */
+        .exercise-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .exercise-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+        }
+        
+        .exercise-info {
+            flex: 1;
+        }
+        
+        .exercise-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        
+        .exercise-meta {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 16px;
+        }
+        
+        .exercise-meta span {
+            margin-right: 16px;
+        }
+        
+        /* Progress */
+        .progress-section {
+            margin-bottom: 12px;
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .progress-text {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+        
+        .progress-complete {
+            background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+        }
+        
+        .progress-partial {
+            background: linear-gradient(90deg, #14b8a6 0%, #06b6d4 100%);
+        }
+        
+        .progress-none {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .exercise-url {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+        }
+        
+        .exercise-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        
+        .stat-card {
+            background: rgba(45, 45, 45, 0.8);
+            border-radius: 16px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #10b981;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .exercise-card {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 16px;
+            }
+            
+            .exercise-actions {
+                flex-direction: column;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 16px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <h1 class="nav-title">MathBuddy Home</h1>
+                <div class="nav-user">
+                    <span class="nav-welcome">Welcome, student@mathbuddy.com!</span>
+                    <button class="btn btn-secondary btn-sm">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="content">
+                
+                <!-- Stats Overview -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">4</div>
+                        <div class="stat-label">Total Exercises</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">140</div>
+                        <div class="stat-label">Total Questions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">55</div>
+                        <div class="stat-label">Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">48</div>
+                        <div class="stat-label">Correct Answers</div>
+                    </div>
+                </div>
+                
+                <!-- Header with Create Button -->
+                <div class="header">
+                    <h2 class="page-title">My Exercises</h2>
+                    <button class="btn btn-primary">Create New Exercise</button>
+                </div>
+
+                <!-- Exercises List -->
+                <div class="exercise-list">
+                    
+                    <!-- Exercise 1 - Completed -->
+                    <div class="card exercise-card">
+                        <div class="exercise-info">
+                            <h3 class="exercise-title">Basic Addition Practice</h3>
+                            <div class="exercise-meta">
+                                <span>Total Questions: 20</span>
+                                <span>Code: ABC123</span>
+                                <span>Created: Jul 25, 2025</span>
+                            </div>
+                            
+                            <div class="progress-section">
+                                <div class="progress-info">
+                                    <span class="progress-text">Progress: 20 / 20 completed (100%)</span>
+                                    <span class="progress-text">Score: 18</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-complete" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="exercise-url">http://localhost:4000/exercise/ABC123</div>
+                        </div>
+                        <div class="exercise-actions">
+                            <button class="btn btn-secondary btn-sm">Copy Link</button>
+                            <button class="btn btn-primary btn-sm">View Results</button>
+                        </div>
+                    </div>
+
+                    <!-- Exercise 2 - Partially Completed -->
+                    <div class="card exercise-card">
+                        <div class="exercise-info">
+                            <h3 class="exercise-title">Multiplication Tables 1-5</h3>
+                            <div class="exercise-meta">
+                                <span>Total Questions: 50</span>
+                                <span>Code: XYZ789</span>
+                                <span>Created: Jul 26, 2025</span>
+                            </div>
+                            
+                            <div class="progress-section">
+                                <div class="progress-info">
+                                    <span class="progress-text">Progress: 32 / 50 completed (64%)</span>
+                                    <span class="progress-text">Score: 28</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-partial" style="width: 64%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="exercise-url">http://localhost:4000/exercise/XYZ789</div>
+                        </div>
+                        <div class="exercise-actions">
+                            <button class="btn btn-secondary btn-sm">Copy Link</button>
+                            <button class="btn btn-primary btn-sm">Continue</button>
+                        </div>
+                    </div>
+
+                    <!-- Exercise 3 - Just Started -->
+                    <div class="card exercise-card">
+                        <div class="exercise-info">
+                            <h3 class="exercise-title">Advanced Division Problems</h3>
+                            <div class="exercise-meta">
+                                <span>Total Questions: 30</span>
+                                <span>Code: DEF456</span>
+                                <span>Created: Jul 27, 2025</span>
+                            </div>
+                            
+                            <div class="progress-section">
+                                <div class="progress-info">
+                                    <span class="progress-text">Progress: 3 / 30 completed (10%)</span>
+                                    <span class="progress-text">Score: 2</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-partial" style="width: 10%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="exercise-url">http://localhost:4000/exercise/DEF456</div>
+                        </div>
+                        <div class="exercise-actions">
+                            <button class="btn btn-secondary btn-sm">Copy Link</button>
+                            <button class="btn btn-primary btn-sm">Continue</button>
+                        </div>
+                    </div>
+
+                    <!-- Exercise 4 - Not Started -->
+                    <div class="card exercise-card">
+                        <div class="exercise-info">
+                            <h3 class="exercise-title">Mixed Operations Quiz</h3>
+                            <div class="exercise-meta">
+                                <span>Total Questions: 40</span>
+                                <span>Code: GHI012</span>
+                                <span>Created: Jul 27, 2025</span>
+                            </div>
+                            
+                            <div class="progress-section">
+                                <div class="progress-info">
+                                    <span class="progress-text">Progress: 0 / 40 completed (0%)</span>
+                                    <span class="progress-text">Score: 0</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-none" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="exercise-url">http://localhost:4000/exercise/GHI012</div>
+                        </div>
+                        <div class="exercise-actions">
+                            <button class="btn btn-secondary btn-sm">Copy Link</button>
+                            <button class="btn btn-primary btn-sm">Start</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
