@@ -47,6 +47,21 @@ Experienced Engineering Manager with over **6 years** in technical leadership an
 🔹 [Communication Skills: Stakeholder Analysis](https://www.udemy.com/certificate/UC-ec2b9553-ba31-49eb-b376-dfd901ad836d/)
 
 ***
+
+***
+
+### GitHub Projects
+
+- [German_vocab_quiz](https://github.com/SnowflakeCoder/my-public-space/tree/main/projects/german_vocab_quiz) ➡️
+- [Math_quiz_app](https://github.com/SnowflakeCoder/my-public-space/tree/main/projects/math_quiz_app) ➡️
+- [Mathbuddy](https://github.com/SnowflakeCoder/my-public-space/tree/main/projects/mathbuddy) ➡️
+  - **mathbuddy-backend**: Node.js/TypeScript REST API with JWT authentication
+  - **mathbuddy-frontend**: React/TypeScript SPA with Tailwind CSS styling
+- Java - Mutation Testing Examples ➡️ [tdd-service](https://github.com/SnowflakeCoder/my-public-space/tree/main/projects/tdd-service), [vending-service](https://github.com/SnowflakeCoder/my-public-space/tree/main/projects/vending-service)
+
+https://github.com/SnowflakeCoder/my-public-space/tree/main/projects
+
+***
 ***
 
 
