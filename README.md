@@ -10,11 +10,13 @@ Experienced Engineering Manager with over **6 years** in technical leadership an
 
 ### 🔑 Highlights
 
-🔹 Managed and maintained 6 𝐠𝐥𝐨𝐛𝐚𝐥 𝐛𝐫𝐚𝐧𝐝𝐬 across 20+ 𝐜𝐨𝐮𝐧𝐭𝐫𝐢𝐞𝐬, serving 150𝐌+ users.
+🔷Managed and maintained 6 𝐠𝐥𝐨𝐛𝐚𝐥 𝐛𝐫𝐚𝐧𝐝𝐬 across 20+ 𝐜𝐨𝐮𝐧𝐭𝐫𝐢𝐞𝐬, serving 150𝐌+ users.
 
-🔹 Hands-on expertise in Java/J2EE technologies, with a strong focus on clean architecture and high availability.
+🔷Collaborate with teams using Java, Python, TypeScript (Node.js), and Golang.
 
-🔹 Designed and delivered large-scale, distributed systems using 𝐀𝐖𝐒, 𝐂𝐈/𝐂𝐃, 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬, 𝐊𝐚𝐟𝐤𝐚, 𝐑𝐞𝐝𝐢𝐬, 𝐚𝐧𝐝 𝐏𝐨𝐬𝐭𝐠𝐫𝐞𝐒𝐐𝐋.
+🔷Designed and delivered large-scale, distributed systems using 𝐀𝐖𝐒, 𝐂𝐈/𝐂𝐃, 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬, 𝐊𝐚𝐟𝐤𝐚, 𝐂𝐚𝐬𝐬𝐚𝐧𝐝𝐫𝐚, 𝐄𝐥𝐚𝐬𝐭𝐢𝐜 𝐬𝐞𝐚𝐫𝐜𝐡, 𝐑𝐞𝐝𝐢𝐬, 𝐚𝐧𝐝 𝐏𝐨𝐬𝐭𝐠𝐫𝐞𝐒𝐐𝐋.
+
+🔷 Strong focus on team development, agile practices, and delivering business-aligned outcomes, with a strong focus on clean architecture and high availability.
 
 ***
 ***
@@ -36,15 +38,15 @@ Experienced Engineering Manager with over **6 years** in technical leadership an
 
 ### Certificates
 
-🔹 [Generative AI - LLMs for Leaders](https://udemy.com/certificate/UC-d1fe2b91-4dd0-4cb6-abb5-7d3b47a9052d/)
+🔷 [Generative AI - LLMs for Leaders](https://udemy.com/certificate/UC-d1fe2b91-4dd0-4cb6-abb5-7d3b47a9052d/)
 
-🔹 [Artificial Intelligence (AI) + ChatGPT](https://udemy.com/certificate/UC-3d790563-e585-4ff8-9fb7-e79c88c493c8/)
+🔷 [Artificial Intelligence (AI) + ChatGPT](https://udemy.com/certificate/UC-3d790563-e585-4ff8-9fb7-e79c88c493c8/)
 
-🔹 [Software Architecture and System Design](https://udemy.com/certificate/UC-752cb98e-6d3c-43f1-95c9-7135f154b4f7/)
+🔷 [Software Architecture and System Design](https://udemy.com/certificate/UC-752cb98e-6d3c-43f1-95c9-7135f154b4f7/)
 
-🔹 [Leadership: Practical Leadership Skills](https://udemy.com/certificate/UC-5c865106-e585-42d9-8902-db48b6a4cc9b/)
+🔷 [Leadership: Practical Leadership Skills](https://udemy.com/certificate/UC-5c865106-e585-42d9-8902-db48b6a4cc9b/)
 
-🔹 [Communication Skills: Stakeholder Analysis](https://www.udemy.com/certificate/UC-ec2b9553-ba31-49eb-b376-dfd901ad836d/)
+🔷 [Communication Skills: Stakeholder Analysis](https://www.udemy.com/certificate/UC-ec2b9553-ba31-49eb-b376-dfd901ad836d/)
 
 ***
 
