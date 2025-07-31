@@ -38,15 +38,15 @@ Experienced Engineering Manager with over **6 years** in technical leadership an
 
 ### Certificates
 
-🔷 [Generative AI - LLMs for Leaders](https://udemy.com/certificate/UC-d1fe2b91-4dd0-4cb6-abb5-7d3b47a9052d/)
+🛡️ [Generative AI - LLMs for Leaders](https://udemy.com/certificate/UC-d1fe2b91-4dd0-4cb6-abb5-7d3b47a9052d/)
 
-🔷 [Artificial Intelligence (AI) + ChatGPT](https://udemy.com/certificate/UC-3d790563-e585-4ff8-9fb7-e79c88c493c8/)
+🛡️ [Artificial Intelligence (AI) + ChatGPT](https://udemy.com/certificate/UC-3d790563-e585-4ff8-9fb7-e79c88c493c8/)
 
-🔷 [Software Architecture and System Design](https://udemy.com/certificate/UC-752cb98e-6d3c-43f1-95c9-7135f154b4f7/)
+🛡️ [Software Architecture and System Design](https://udemy.com/certificate/UC-752cb98e-6d3c-43f1-95c9-7135f154b4f7/)
 
-🔷 [Leadership: Practical Leadership Skills](https://udemy.com/certificate/UC-5c865106-e585-42d9-8902-db48b6a4cc9b/)
+🛡️ [Leadership: Practical Leadership Skills](https://udemy.com/certificate/UC-5c865106-e585-42d9-8902-db48b6a4cc9b/)
 
-🔷 [Communication Skills: Stakeholder Analysis](https://www.udemy.com/certificate/UC-ec2b9553-ba31-49eb-b376-dfd901ad836d/)
+🛡️ [Communication Skills: Stakeholder Analysis](https://www.udemy.com/certificate/UC-ec2b9553-ba31-49eb-b376-dfd901ad836d/)
 
 ***
 
